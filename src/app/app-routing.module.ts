@@ -10,6 +10,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AdminGuard } from './guards/admin.guard';
 import { UserGuard } from './guards/user.guard';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 const routes: Routes = [
      { path: '', redirectTo: 'home', pathMatch: 'full' }, 
@@ -20,6 +21,7 @@ const routes: Routes = [
      {path: 'register', component: RegisterComponent},
      {path: 'order-confirmation', component: OrderConfirmationComponent, canActivate: [UserGuard]},
      { path: 'about-us', component: AboutUsComponent },
+     { path: 'contacts', component: ContactComponent},
      { path: 'myorder', component: OrderComponent, canActivate: [UserGuard]},
      {
       path: 'admin',  
