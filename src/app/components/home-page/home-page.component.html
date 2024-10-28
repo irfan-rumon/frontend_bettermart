@@ -1,0 +1,35 @@
+<app-navbar
+   [totalAddedQuantity]="totalAddedQuanty"
+></app-navbar>
+
+<app-slider></app-slider>
+
+
+<h2 style="text-align:center; margin-top: 3rem;">Catagories</h2 >
+<div id="catagory-section">
+    <div  *ngFor="let cat of catagories">
+        <app-catagory-item 
+              [name]="cat.name" [imageURL]="cat.imageURL"
+              (click)="onCatClick(cat)"
+        
+        ></app-catagory-item>
+    </div>
+</div>
+
+<h2 style="text-align:center; margin-top: 3rem;">Trending</h2 >   
+        <div class="d-flex ">
+            <div  *ngFor="let pr of trendingProducts">
+                <app-product-item
+                  [product]="pr"
+                  (onAddCart)="addAddedQuantity()" 
+                
+                ></app-product-item>
+            </div>
+        </div>
+
+<app-footer></app-footer>
+           
+        
+
+   
+

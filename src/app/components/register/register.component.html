@@ -1,0 +1,154 @@
+
+
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+            class="img-fluid" alt="Sample image">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <form (ngSubmit)="onSubmit()" #regForm = "ngForm">
+            <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+              <h3 style="margin-left: 10rem; margin-bottom: 1rem; color: rgb(78, 78, 122);">Crate Account</h3>
+              
+            </div>
+  
+            
+             
+            <!-- Email input -->
+            <div class="form-outline mb-3 mt-0">
+              <input type="text"  [(ngModel)]="user.fullName" name="fullName" class="form-control form-control-lg"
+                placeholder="Enter Full Name"   #fullName="ngModel"  required />
+            
+                <div *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)"
+                        class="alert">
+
+                      <div *ngIf="fullName.errors?.['required']" style="color:red;margin-bottom: 0.5rem;">
+                        *Full Name is required.
+                      </div>     
+                </div>
+ 
+            </div>
+
+				<div class="form-outline mb-3 mt-0">
+					<input type="text"  [(ngModel)]="user.userName" name="userName" class="form-control form-control-lg"
+					  placeholder="Enter Username" #userName="ngModel"  required />
+             
+          
+            <div *ngIf="userName.invalid && (userName.dirty || userName.touched)"
+            class="alert">
+
+                <div *ngIf="userName.errors?.['required']" style="color:red;margin-bottom: 0.5rem;">
+                  *User Name is required.
+                </div>
+         
+            </div>  
+        
+        </div>	
+
+					  <div class="form-outline mb-3 mt-0">
+						<input type="email"  [(ngModel)]="user.email" name="email" class="form-control form-control-lg"
+						  placeholder="Enter Email"  #emaill="ngModel"  email="true" required />
+              <div *ngIf="emaill.invalid && (emaill.dirty || emaill.touched)"
+                  class="alert">
+  
+                  <div *ngIf="emaill.errors?.['required']" style="color:red;margin-bottom: 0.5rem;">
+                    *Email is required.
+                  </div>
+
+                  <div *ngIf="emaill.errors?.['email']"  style="color:red;" >
+                    Email address is not valid. 
+                  </div>
+                          
+           
+              </div> 
+              
+            </div>		
+						  
+						  <div class="form-outline mb-3 mt-0">
+							<input type="text"  [(ngModel)]="user.address" name="address" class="form-control form-control-lg"
+							  placeholder="Enter Address"  #address="ngModel"  required />
+                <div *ngIf="address.invalid && (address.dirty || address.touched)"
+                class="alert">
+
+                <div *ngIf="address.errors?.['required']" style="color:red;">
+                  *Address is required.
+                </div>
+         
+            </div> 
+              
+              </div>		
+							  
+							  <div class="form-outline mb-3 mt-0">
+								<input type="number"  [(ngModel)]="user.phone" name="phone" class="form-control form-control-lg"
+								  placeholder="Enter Contact No."  #phone="ngModel"  required/>
+                  <div class="mb-2" *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+                  class="alert">
+  
+                  <div class="mb-2" *ngIf="phone.errors?.['required']" style="color:red;">
+                    *Contact No. is required.
+                  </div>
+                
+                </div>	
+                
+                </div>
+
+								  <div class="form-outline mb-3 mt-0">
+                      <input type="password"  [(ngModel)]="user.password" name="pass" class="form-control form-control-lg"
+                        placeholder="Enter Password" #pass="ngModel"  required/>
+                        <div *ngIf="pass.invalid && (pass.dirty || pass.touched)"
+                        class="alert">
+        
+                        <div *ngIf="pass.errors?.['required']" style="color:red;">
+                          *Password is required.
+                        </div>
+
+                        </div>
+                  
+                  
+                  </div>		  
+                  
+                  <div class="form-outline mb-3 mt-0">
+                    <input type="password"  [(ngModel)]="user.passConfirm" name="passConfirm" class="form-control form-control-lg"
+                      placeholder="Confirm Password" #passConfirm="ngModel"  required/>
+                      <div *ngIf="passConfirm.invalid && (passConfirm.dirty || passConfirm.touched)"
+                      class="alert">
+      
+                      <div *ngIf="passConfirm.errors?.['required']" style="color:red;">
+                        *Password is required.
+                      </div>
+
+                
+
+                      </div>
+                
+                
+                </div>		  
+  
+           
+  
+          
+  
+                <div class="text-center text-lg-start mt-4 pt-2">
+                  <button  *ngIf="regForm.valid && user.password == user.passConfirm" type="submit"   class="btn btn-primary btn-lg"
+                    style="padding-left: 2.5rem; padding-right: 2.5rem;">Register</button>
+    
+                    <button  *ngIf="!regForm.valid || !(user.password == user.passConfirm)" style="color:aliceblue" [disabled]="true" class="btn btn-lg"
+                    style="padding-left: 2.5rem; padding-right: 2.5rem;">Register</button>
+    
+                  <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? 
+                    <a [routerLink] = "['/login']"
+                      class="link-danger">Login</a></p>
+                </div>
+  
+          </form>
+        </div>
+      </div>
+    </div>
+  
+  </section>
+
+
+  <div style="margin-top: 14rem;"></div>
+<app-footer></app-footer>

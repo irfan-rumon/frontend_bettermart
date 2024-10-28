@@ -1,0 +1,10 @@
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+.menu{
+    width: 10%;
+    margin-right: 2%;
+    margin-left: 0;
+}

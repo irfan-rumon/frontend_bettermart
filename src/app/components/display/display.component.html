@@ -1,0 +1,28 @@
+<app-navbar
+   [totalAddedQuantity]="totalAddedQuanty"
+></app-navbar>
+
+<div class="container">
+
+    <div class="menu">
+         <app-checkbox></app-checkbox>  
+        
+        
+         <app-checkbox-services-option></app-checkbox-services-option>
+    </div>
+
+    <div class="product-list">
+        <h2 style="text-align:center; margin-top: 3rem;">Products:</h2 >   
+        <div class="d-flex ">
+                <div  *ngFor="let pr of products">
+                    <app-product-item
+                        [product]="pr"
+                        (onAddCart)="addAddedQuantity()" 
+                    ></app-product-item>
+                </div>
+        </div>
+    </div>
+    
+</div>   
+
+<app-footer></app-footer>

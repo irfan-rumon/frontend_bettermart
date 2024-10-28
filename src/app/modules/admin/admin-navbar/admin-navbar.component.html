@@ -1,0 +1,12 @@
+<header class="header">
+    <h2 class="text-uppercase fw-bold mb-2" style="margin-left: 0.5rem; margin-top:0.5rem; margin-bottom:0.1rem;">Admin Panel</h2>
+  <ul class="main-nav">
+      <li><a [routerLink]="['/admin']" class="fw-bold">Home</a></li>
+      <li><a [routerLink]="['/admin/customers']" class="fw-bold">Users</a></li>
+      <li><a  [routerLink]="['/admin/products']" class="fw-bold">Products</a></li>
+      <li><a  [routerLink]="['/admin/orders']" class="fw-bold">Orders</a></li>
+      <li><a style="cursor: pointer;"  (click)="onLogOut()" class="fw-bold" >Logout</a></li>
+      
+     
+  </ul>
+</header> 
