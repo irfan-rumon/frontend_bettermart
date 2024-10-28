@@ -9,6 +9,7 @@ import { OrderComponent } from './components/order/order.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AdminGuard } from './guards/admin.guard';
 import { UserGuard } from './guards/user.guard';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 const routes: Routes = [
      { path: '', redirectTo: 'home', pathMatch: 'full' }, 
@@ -18,6 +19,7 @@ const routes: Routes = [
      {path: 'login', component: LoginComponent},
      {path: 'register', component: RegisterComponent},
      {path: 'order-confirmation', component: OrderConfirmationComponent, canActivate: [UserGuard]},
+     { path: 'about-us', component: AboutUsComponent },
      { path: 'myorder', component: OrderComponent, canActivate: [UserGuard]},
      {
       path: 'admin',  

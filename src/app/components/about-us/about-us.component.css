@@ -1,0 +1,155 @@
+/* Container styling */
+.about-us {
+    font-family: Arial, sans-serif;
+    color: #444;
+    line-height: 1.6;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #e8f4f8, #ffffff);
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Hero Section */
+  .hero {
+   
+    text-align: center;
+    padding: 80px 20px;
+   
+  }
+
+  
+  .hero h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    color: #007bff;
+  }
+  
+  .hero p {
+    font-size: 1.2em;
+  }
+  
+  /* Who We Are Section */
+  .who-we-are{
+    margin-top: 40px;
+    text-align: center;
+  }
+  
+  .who-we-are h2{
+    color: #007bff;
+    font-size: 1.8em;
+  }
+  
+  .who-we-are p {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  /* Mission Section */
+  .mission {
+    margin-top: 30px;
+    padding: 20px;
+    background: #e9f7fd;
+    border-left: 4px solid #007bff;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .mission h2 {
+    color: #007bff;
+    font-size: 1.8em;
+  }
+  
+  /* Services Section */
+  .services {
+    margin-top: 40px;
+    text-align: center;
+  }
+  
+  .services h2 {
+    color: #007bff;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+  }
+  
+  .service-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .service-card {
+    flex: 1 1 200px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .service-card i {
+    font-size: 2.5em;
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  
+  .service-card h3 {
+    color: #333;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  /* Team Section */
+  .team {
+    margin-top: 40px;
+    text-align: center;
+  }
+  
+  .team h2 {
+    color: #007bff;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+  }
+  
+  .team-cards {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .team-card {
+    flex: 1 1 150px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s;
+  }
+  
+  .team-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .team-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .team-card h3 {
+    font-size: 1.1em;
+    color: #333;
+  }
+  
