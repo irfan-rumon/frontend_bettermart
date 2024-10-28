@@ -11,8 +11,8 @@ import { AdminGuard } from './guards/admin.guard';
 import { UserGuard } from './guards/user.guard';
 
 const routes: Routes = [
-     { path: '', redirectTo: 'login', pathMatch: 'full' }, 
-     {path: 'home',  component:  HomePageComponent, canActivate: [UserGuard] },
+     { path: '', redirectTo: 'home', pathMatch: 'full' }, 
+     {path: 'home',  component:  HomePageComponent },
      {path: 'display', component: DisplayComponent, canActivate: [UserGuard]},
      {path: 'cart', component: CartComponent, canActivate: [UserGuard]},
      {path: 'login', component: LoginComponent},
