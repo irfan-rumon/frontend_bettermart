@@ -37,11 +37,9 @@ export class HomePageComponent implements OnInit {
        console.log("Here categories are: ", catagories);
        this.catagories = catagories;
     } )
-    this.productApi.getProducts().subscribe( (products)=>{
-         this.products = products.data;
-         for (let pr of this.products){
-            if( pr.isTrending == true)this.trendingProducts.push( pr );
-         }
+    this.productApi.getTrendingProducts().subscribe( (trendingProduct)=>{
+         this.trendingProducts = trendingProduct;
+         console.log("Here trending products are: ", this.trendingProducts);
     } )
     this.cartService.getCartProducts().subscribe(  (cartProducts)=>{
           this.cartService.getCartProducts().subscribe(  (res)=>{
@@ -65,7 +63,7 @@ export class HomePageComponent implements OnInit {
   onCatClick(cat: Catagory){
     let  searchedProducts: Product[] = [];
     for (let pr of this.products){
-       if( pr.catagory == cat.name){
+       if( pr.category == cat.name){
           searchedProducts.push(pr);
        }
     }

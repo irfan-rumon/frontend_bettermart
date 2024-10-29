@@ -1,78 +1,64 @@
-
-
-img{
-  height: 20rem;
-  width:100%;
+/* Container to center and resize card */
+.product-card {
+  width: 22rem;
+  border: 1px solid #ddd;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.item{
-  padding-left:5px;
-  padding-right:5px;
-  height: 100%;
-  width:100%;
+.product-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
 }
-.item-card{
-  transition:0.5s;
-  cursor:pointer;
+
+/* Card Image Styling */
+.card-img-top {
+  height: 18rem;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
-.item-card-title{  
-  font-size:15px;
-  transition:1s;
-  cursor:pointer;
-}
-.item-card-title i{  
-  font-size:15px;
-  transition:1s;
-  cursor:pointer;
-  color:#ffa710
-}
-.card-title i:hover{
-  transform: scale(1.25) rotate(100deg); 
-  color:#18d4ca;
-  
-}
-.card:hover{
+
+.card:hover .card-img-top {
   transform: scale(1.05);
-  box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
-}
-.card-text{
-  height:80px;  
 }
 
-.card::before, .card::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  transform: scale3d(0, 0, 1);
-  transition: transform .3s ease-out 0s;
-  background: rgba(255, 255, 255, 0.1);
-  content: '';
-  pointer-events: none;
-}
-.card::before {
-  transform-origin: left top;
-}
-.card::after {
-  transform-origin: right bottom;
-}
-.card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {
-  transform: scale3d(1, 1, 1);
+/* Text and Button Styling */
+.card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 10px;
 }
 
-#costing{
- margin-left: 6rem;
-  height: 2.5rem;
- 
-  
+.card-title:hover {
+  color: #ffa710;
 }
 
-#brand{
-  
-  margin-left: 8rem;
+h4 {
+  font-size: 1.5rem;
+  color: #28a745;
+  font-weight: bold;
 }
 
-.container{
-  width: 20rem;
+/* Button Styling */
+.btn-success {
+  background-color: #28a745;
+  border: none;
+  font-size: 1.1rem;
+  transition: background-color 0.3s;
 }
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+/* Subtle hover effect on entire card */
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-body:hover .btn-success {
+  background-color: #218838;
+}
+

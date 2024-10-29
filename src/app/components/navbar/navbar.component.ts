@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-      this.productApi.getProducts().subscribe( (products)=>{
+      this.productApi.getAllProducts().subscribe( (products)=>{
         this.products = products.data;
         
       } )
@@ -63,7 +63,7 @@ export class NavbarComponent implements OnInit {
        console.log("Inside cat");
         if( cat.name.includes(seachItem)){
             for(let pr of this.products){
-               if(pr.catagory == cat.name)searchedProducts.push(pr);
+               if(pr.category == cat.name)searchedProducts.push(pr);
             }
         }
     }
@@ -76,13 +76,7 @@ export class NavbarComponent implements OnInit {
       }
     }
 
-    //brand name wise search logic if applicable
-    for(let pr of this.products){
-      console.log("Inside name");
-      if(pr.brand.includes(seachItem) && !searchedProducts.includes(pr)){
-        searchedProducts.push(pr);
-      }
-    }
+  
 
 
     this.searchService.setProducts(searchedProducts);

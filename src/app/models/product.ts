@@ -1,10 +1,9 @@
 export interface Product {
-    _id:string;
-    imageURL: string;
-    name: string;
-    catagory: string;
-    brand: string;
-    isTrending: boolean;
-    unitPrice : number;
-    stockAvailable: number;
-  }
+  id?: string;
+  image_link: string;  
+  name: string;
+  category?: string | null;   
+  isTrending?: boolean;
+  price: number;
+ 
+}

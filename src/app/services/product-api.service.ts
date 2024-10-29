@@ -14,16 +14,20 @@ const httpOptions = {
 })
 export class ProductApiService {
 
-  private apiUrl = 'http://localhost:3030/products';
+  private apiUrl =  'http://127.0.0.1:8000/api/store/products/';
  
 
   constructor(private http: HttpClient) {}
 
-  getProducts(): Observable<any> {
+
+  getAllProducts(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
   }
 
-
+  getTrendingProducts(): Observable<any> {
+    const url = `${this.apiUrl}?is_trending=1`;
+    return this.http.get<any>(url, httpOptions);
+  }
 
   getProduct(prId: any): Observable<any> {
     const url = `${this.apiUrl}/${prId}`;

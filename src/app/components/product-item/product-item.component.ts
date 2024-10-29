@@ -4,7 +4,7 @@ import { CartProduct } from 'src/app/models/cartProduct';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
 import { AuthorizationService } from 'src/app/services/authorization.service';
-import { ObjectUnsubscribedError } from 'rxjs';
+
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
@@ -36,26 +36,26 @@ export class ProductItemComponent implements OnInit {
         let arr:any[] = res.data;
         for(let cp of arr){
           //  console.log("Whole Object", cp, cp.brand, cp._id);
-                if(cp.productID == product._id   && cp.userID == this.auth.getUserPayload().sub){ //already exist,
-                 // console.log("EDIT korte ready.....");
+                // if(cp.productID == product._id   && cp.userID == this.auth.getUserPayload().sub){ //already exist,
+                //  // console.log("EDIT korte ready.....");
                     
-                  cp.quantity++;
-                    cp.subtotal = +cp.unitPrice  + +cp.subtotal;  
-                   // console.log("Edired Object: ", cp);
+                //   cp.quantity++;
+                //     cp.subtotal = +cp.unitPrice  + +cp.subtotal;  
+                //    // console.log("Edired Object: ", cp);
                     
-                    this.cartService.editCartProduct(cp._id, cp).subscribe(); 
-                    return; 
-                }
+                //     this.cartService.editCartProduct(cp._id, cp).subscribe(); 
+                //     return; 
+                // }
       } 
 
       
       let newCartProduct = {} as any;
      
-      newCartProduct.userID = this.auth.getUserPayload().sub; newCartProduct.brand=product.brand;
-      newCartProduct.name=product.name;  newCartProduct.imageURL=product.imageURL;
-      newCartProduct.unitPrice=product.unitPrice; newCartProduct.quantity=1;
-      newCartProduct.subtotal=product.unitPrice;
-      newCartProduct.productID = product._id; //! means it not null for sure
+      // newCartProduct.userID = this.auth.getUserPayload().sub; newCartProduct.brand=product.brand;
+      // newCartProduct.name=product.name;  newCartProduct.imageURL=product.imageURL;
+      // newCartProduct.unitPrice=product.unitPrice; newCartProduct.quantity=1;
+      // newCartProduct.subtotal=product.unitPrice;
+      // newCartProduct.productID = product._id; //! means it not null for sure
 
       this.cartService.addCartProduct( newCartProduct  ).subscribe();
       this.cartProducts.push(newCartProduct);

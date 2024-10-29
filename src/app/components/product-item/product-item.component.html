@@ -1,28 +1,14 @@
-<div class="container mt-2"  style="margin-left: 33%;">
-  <!--   <div class="card card-block mb-2">
-      <h4 class="card-title">Card 1</h4>
-      <p class="card-text">Welcom to bootstrap card styles</p>
-      <a href="#" class="btn btn-primary">Submit</a>
-    </div>   -->
-    
-     
-    
-     
-     
-      <div class="container">
-        <div class="card item-card card-block ">
-        <h4 class="item-card-title text-right"><i class="material-icons"></i></h4>
-          <img src="{{ product.imageURL }}" alt="Photo of sunset">
-          <h5 class="card-title ms-5 mt-3 mb-4 center">{{ product.name }}</h5>
-         
-          <div class="d-flex">
-              <h3 class="ms-2" style="color: green; margin-bottom:2rem">${{product.unitPrice}}</h3>
-             
-              <button (click)="onAddToCart(product)" type="button" id="costing"> <i style="font-size: 1rem; " class="bi bi-cart-fill"></i>Add Cart</button>
-          </div>
-         
-        </div>
-      </div>  
-      
+<div class="container product-card mt-4 p-2 shadow" style="margin-left: 33%; border-radius: 10px; max-width: 20rem;">
+  <div class="card item-card" style="height: auto;">
+    <img src="{{ product.image_link }}" alt="{{ product.name }}" class="card-img-top rounded-top" style="height: 14rem; object-fit: cover;">
+    <div class="card-body text-center p-2">
+      <h5 class="card-title text-dark mb-2" style="font-size: 1rem;">{{ product.name }}</h5>
+      <div class="d-flex justify-content-center align-items-center mb-2">
+        <h4 class="text-success" style="font-size: 1.2rem;">${{ product.price }}</h4>
+      </div>
+      <button (click)="onAddToCart(product)" class="btn btn-success w-100" style="font-size: 0.9rem; padding: 0.5rem;">
+        <i class="bi bi-cart-fill me-1"></i> Add to Cart
+      </button>
+    </div>
+  </div>
 </div>
-  

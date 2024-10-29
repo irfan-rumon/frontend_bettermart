@@ -15,18 +15,18 @@ export class AdminProductsComponent implements OnInit {
   constructor(private productApi:ProductApiService, private router: Router) { }
 
   ngOnInit(): void {
-    this.productApi.getProducts().subscribe(  response => {
+    this.productApi.getAllProducts().subscribe(  response => {
       this.products = response.data;
     
     } )
   }
 
   onDelete(pr:Product){
-    this.productApi.deleteProduct(pr._id).subscribe(  () => (this.products = this.products.filter((p: { _id: string | undefined; }) => p._id !== pr._id)) );//internal array thekei delete
+    this.productApi.deleteProduct(pr.id).subscribe(  () => (this.products = this.products.filter((p: { _id: string | undefined; }) => p._id !== pr.id)) );//internal array thekei delete
   }
 
   onEdit(pr:Product){
-    this.router.navigate(['admin/products', pr._id, 'edit']);
+    this.router.navigate(['admin/products', pr.id, 'edit']);
   }
 
   onAdd(){
