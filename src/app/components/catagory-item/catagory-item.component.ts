@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CatagoryItemComponent implements OnInit {
 
   @Input() name:string;
-  @Input() imageURL: string;
+  @Input() image_link: string;
 
   constructor() { }
 

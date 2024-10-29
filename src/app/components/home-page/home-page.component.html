@@ -9,7 +9,7 @@
 <div id="catagory-section">
     <div  *ngFor="let cat of catagories">
         <app-catagory-item 
-              [name]="cat.name" [imageURL]="cat.imageURL"
+              [name]="cat.name" [image_link]="cat.image_link"
               (click)="onCatClick(cat)"
         
         ></app-catagory-item>

@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class CatagoryApiService {
 
-  private apiUrl = 'http://localhost:3030/catagories';
+  private apiUrl = 'http://127.0.0.1:8000/api/store/categories/';
 
   constructor(private http: HttpClient) { }
 

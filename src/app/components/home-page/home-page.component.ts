@@ -24,7 +24,8 @@ export class HomePageComponent implements OnInit {
   cartProducts:CartProduct[];
  
   
-  constructor(private router: Router, private catagoryApi:CatagoryApiService,
+  constructor(private router: Router,
+              private catagoryApi:CatagoryApiService,
               private productApi: ProductApiService,
               private searchService: SearchService,
               private cartService: CartService,
@@ -33,7 +34,8 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.catagoryApi.getCatagories().subscribe(  (catagories)=>{
-       this.catagories = catagories.data;
+       console.log("Here categories are: ", catagories);
+       this.catagories = catagories;
     } )
     this.productApi.getProducts().subscribe( (products)=>{
          this.products = products.data;

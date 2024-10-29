@@ -1,6 +1,6 @@
 export interface Catagory {
     id: number;
-    imageURL: string;
+    image_link: string;
     name: string;
     
   }
