@@ -12,6 +12,7 @@ export class RegisterComponent implements OnInit {
 
   user:User = {} as User;
   passNotMatched: boolean = false;
+  showModal: boolean = false;
 
   constructor(private router: Router, 
               private customerApi: CustomerApiService, 
@@ -27,31 +28,37 @@ export class RegisterComponent implements OnInit {
        
         return;
      }
-     //console.log(this.user);
-     this.userApi.addUser(this.user).subscribe(   (newUser)=>{
-      if( newUser.roll == 'user'){
-        let customer: any = {
-            userID: newUser._id,
-            name: newUser.fullName,
-            email: newUser.email,
-            address: newUser.address,
-            phone: newUser.phone,
-        }
-        console.log("Amader noya customer: ", customer);
-        this.customerApi.addCustomer( customer ).subscribe(  (res)=>{
-            console.log("done");
-            alert('Registration Successfull!');
-            this.router.navigate(['/login']);
-         
-        },   (err)=>{
-            console.log("customer add hoy nai");
-        });
-     }
 
-     });
+     let userInfo: any = {
+        full_name: this.user.fullName,
+        email: this.user.email,
+        phone_number: this.user.phone,
+        password: this.user.password,
+        password2: this.user.passConfirm,
+        street_address: this.user.street_address,
+        city: this.user.city,
+        state: this.user.state,
+        postal_code: this.user.postal_code,
+        country: this.user.country
+     }
+     console.log(this.user);
+     this.userApi.addUser(userInfo).subscribe(
+      (newUser) => {
+        this.showModal = true;
+      },
+      (error) => {
+        console.error('Error adding user', error);
+        // Handle error as needed, maybe show a message to the user
+      }
+    );
      
    
 
+  }
+
+  closeModal() {
+    this.showModal = false;
+    this.router.navigate(['/login']); // Navigate to login after closing the modal
   }
 
 

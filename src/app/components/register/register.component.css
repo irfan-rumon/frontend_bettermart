@@ -13,3 +13,28 @@ height: calc(100% - 73px);
 height: 100%;
 }
 }
+
+
+.alert {
+    margin-top: 0.25rem;
+  }
+  
+  h3 {
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+  
+  .vh-100 {
+    background-color: #f8f9fa; /* Light background color for the section */
+  }
+  
+  .btn-primary {
+    background-color: #007bff; /* Bootstrap primary button color */
+    border: none;
+  }
+  
+  .btn-secondary {
+    background-color: #6c757d; /* Bootstrap secondary button color */
+    border: none;
+  }
+  

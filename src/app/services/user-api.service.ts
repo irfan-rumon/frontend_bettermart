@@ -16,7 +16,7 @@ const httpOptions = {
 })
 export class UserApiService {
 
-  private apiUrl = 'http://localhost:3030/users';
+  private registerUrl = 'http://127.0.0.1:8000/api/account/register/';
   private loginUrl = 'http://127.0.0.1:8000/api/account/login/';
  
  
@@ -24,16 +24,16 @@ export class UserApiService {
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(this.registerUrl);
   }
 
   getUser(userId: any):Observable<User> {
-    const url = `${this.apiUrl}/${userId}`;
+    const url = `${this.registerUrl}/${userId}`;
     return this.http.get<User>(url);
   }
 
   addUser(user: User): Observable<User> {
-    return this.http.post<User>(this.apiUrl, user, httpOptions);
+    return this.http.post<User>(this.registerUrl, user, httpOptions);
   }
 
   logUser(credentials:LoggerUser):Observable<any>{
