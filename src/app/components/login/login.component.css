@@ -13,3 +13,44 @@ height: calc(100% - 73px);
 height: 100%;
 }
 }
+
+
+.bg-light {
+    background-color: #f8f9fa;
+  }
+  
+  .error-message {
+    margin-top: 0.3rem;
+    min-height: 1rem;
+  }
+  
+  .text-danger {
+    color: red !important;
+  }
+  
+  .form-outline {
+    position: relative;
+  }
+  
+  .form-outline input {
+    height: 45px;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  .link-danger {
+    color: #dc3545;
+  }
+  
+  .link-danger:hover {
+    color: #bd2130;
+  }
+  

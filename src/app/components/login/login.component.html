@@ -1,84 +1,56 @@
+<section class="vh-100 bg-light">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5 text-center">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          class="img-fluid rounded" alt="Sample image">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <form (ngSubmit)="onSubmit()" #logForm="ngForm" class="bg-white p-4 shadow rounded">
+          <div class="text-center mb-4">
+            <h3 class="text-primary fw-bold">SIGN IN</h3>
+          </div>
 
-
-<section class="vh-100">
-    <div class="container-fluid h-custom">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-md-9 col-lg-6 col-xl-5">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-            class="img-fluid" alt="Sample image">
-        </div>
-        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-          <form (ngSubmit)="onSubmit()" #logForm = "ngForm">
-            <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-              <h3 style="margin-left: 10rem;margin-bottom:2rem;color: rgb(78, 78, 122);">SIGN IN</h3>
-              
+          <!-- Email input -->
+          <div class="form-outline mb-3">
+            <input type="text" class="form-control form-control-lg" placeholder="Enter Email"
+              [(ngModel)]="user.email" name="email" #email="ngModel" email="true" required />
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
+              <small *ngIf="email.errors?.['required']" class="text-danger">*Valid Email is required.</small>
             </div>
-  
-            
-             
-            <!-- Email input -->
-            <div class="form-outline mb-4">
-              <input type="text"  class="form-control form-control-lg"
-                placeholder="Enter Email" [(ngModel)]="user.email" name="email" #email="ngModel"  email="true" required />
-             
-                <div *ngIf="email.invalid && (email.dirty || email.touched)"
-                   class="alert">
+          </div>
 
-                  <div *ngIf="email.errors?.['required']" style="color:red;margin-bottom: 0.5rem;">
-                    *Valid Email is required.
-                  </div>
-             
-                </div>
-
-
+          <!-- Password input -->
+          <div class="form-outline mb-3">
+            <input type="password" class="form-control form-control-lg" placeholder="Enter password"
+              [(ngModel)]="user.password" name="password" #pass="ngModel" required />
+            <div *ngIf="pass.invalid && (pass.dirty || pass.touched)" class="error-message">
+              <small *ngIf="pass.errors?.['required']" class="text-danger">*Password is required.</small>
             </div>
-  
-            <!-- Password input -->
-            <div class="form-outline mb-3">
-              <input type="password" id="form3Example4" class="form-control form-control-lg"
-                placeholder="Enter password" [(ngModel)]="user.password" name="password" #pass="ngModel"  required />
-             
-                <div *ngIf="pass.invalid && (pass.dirty || pass.touched)"
-                   class="alert">
+          </div>
 
-                  <div *ngIf="pass.errors?.['required']" style="color:red;margin-bottom: 0.5rem;">
-                    *Password is required.
-                  </div>
-             
-                </div>
+          <!-- Login error message -->
+          <div *ngIf="failedLogin" class="error-message mb-3">
+            <p class="text-danger font-bold" style="font-weight: bold; margin-bottom: 30px;">*Wrong credentials. Please Try again</p>
+          </div>
 
+          <!-- Account disabled message -->
+          <div *ngIf="isDisabled && email.valid && pass.valid" class="error-message text-center mb-3">
+            <small class="text-danger">*Your account is blocked. Please contact the admin.</small>
+          </div>
 
-            </div>
-
-            <div *ngIf="email.valid && pass.valid &&  failedLogin" style="color:red;margin-bottom: 0.5rem;">
-                  *Wrong credentials     
-            </div>
-
-            <div *ngIf="email.valid && pass.valid && isDisabled" style="color:red;margin-bottom: 0.5rem;">
-                  *Your account is blocked. Please contact with admin.   
-            </div>
-  
-    
-              
-
-            <div class="text-center text-lg-start mt-4 pt-2">
-              <button  *ngIf="logForm.valid" type="submit"   class="btn btn-primary btn-lg"
-                style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-
-                <button  *ngIf="!logForm.valid" style="color:aliceblue" [disabled]="true" class="btn btn-lg"
-                style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-
-              <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? 
-                <a [routerLink] = "['/register']"
-                  class="link-danger">Register</a></p>
-            </div>
-  
-          </form>
-        </div>
+          <!-- Submit button and sign-up link -->
+          <div class="text-center mt-3">
+            <button type="submit" class="btn btn-primary btn-lg px-5 w-100">Login</button>
+          </div>
+          <p class="small mt-4 mb-0 text-center">
+            Don't have an account?
+            <a [routerLink]="['/register']" class="link-danger fw-bold">Register</a>
+          </p>
+        </form>
       </div>
     </div>
-  
-  </section>
-
+  </div>
+</section>
 
 <app-footer></app-footer>

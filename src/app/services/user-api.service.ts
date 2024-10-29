@@ -17,7 +17,7 @@ const httpOptions = {
 export class UserApiService {
 
   private apiUrl = 'http://localhost:3030/users';
-  private loginUrl = 'http://localhost:3030/authentication';
+  private loginUrl = 'http://127.0.0.1:8000/api/account/login/';
  
  
 
@@ -36,7 +36,7 @@ export class UserApiService {
     return this.http.post<User>(this.apiUrl, user, httpOptions);
   }
 
-  logUser(user:LoggerUser):Observable<any>{
-    return this.http.post<any>(this.loginUrl,  user, httpOptions);
+  logUser(credentials:LoggerUser):Observable<any>{
+    return this.http.post<any>(this.loginUrl,  credentials, httpOptions);
   }
 }
