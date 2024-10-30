@@ -42,136 +42,136 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.cartService.getCartProducts().subscribe(  (res)=>{
-         let arr:any[] = res.data;
-         for(let cp of arr){
-             if( cp.userID == this.auth.getUserPayload().sub){
-                  this.cartProducts.push(cp);
-                  this.total +=  +cp.subtotal;
-                  this.grandTotal += +cp.subtotal;
-             }
-         }
-    })
+    // this.cartService.getCartProducts().subscribe(  (res)=>{
+    //      let arr:any[] = res.data;
+    //      for(let cp of arr){
+    //          if( cp.userID == this.auth.getUserPayload().sub){
+    //               this.cartProducts.push(cp);
+    //               this.total +=  +cp.subtotal;
+    //               this.grandTotal += +cp.subtotal;
+    //          }
+    //      }
+    // })
 
-    this.cartService.getCartProducts().subscribe(  (cartProducts)=>{
-      this.cartService.getCartProducts().subscribe(  (res)=>{
-           this.cartProducts = res.data;
-           for( let cp of this.cartProducts){
-               if( cp.userID == this.auth.getUserPayload().sub){
-                  this.totalAddedQuanty += cp.quantity;
-               }
-           }    
-      })
-})
+    // this.cartService.getCartProducts().subscribe(  (cartProducts)=>{
+    //   this.cartService.getCartProducts().subscribe(  (res)=>{
+    //        this.cartProducts = res.data;
+    //        for( let cp of this.cartProducts){
+    //            if( cp.userID == this.auth.getUserPayload().sub){
+    //               this.totalAddedQuanty += cp.quantity;
+    //            }
+    //        }    
+    //   })
+    // })
   
 
   }
 
 
 
-  addQuantity(cartProduct:any){
-    this.totalAddedQuanty++;
-    for(let cp  of this.cartProducts){
-      if(cp._id == cartProduct._id){ 
-          cp.quantity++;
-          cp.subtotal = +cp.unitPrice  +  +cp.subtotal;
-          this.total += +cp.unitPrice;
-          this.grandTotal += +cp.unitPrice;  
-          this.cartService.editCartProduct(cartProduct._id, cp).subscribe(); 
-         // console.log("Akn cart", this.auth.getUser());
-          return; 
-      }
-    }
-  }
+  // addQuantity(cartProduct:any){
+  //   this.totalAddedQuanty++;
+  //   for(let cp  of this.cartProducts){
+  //     if(cp._id == cartProduct._id){ 
+  //         cp.quantity++;
+  //         cp.subtotal = +cp.unitPrice  +  +cp.subtotal;
+  //         this.total += +cp.unitPrice;
+  //         this.grandTotal += +cp.unitPrice;  
+  //         this.cartService.editCartProduct(cartProduct._id, cp).subscribe(); 
+  //        // console.log("Akn cart", this.auth.getUser());
+  //         return; 
+  //     }
+  //   }
+  // }
 
-  minusQuantity(cartProduct:any){
-    if( cartProduct.quantity == 1){
-        this.deleteCartProduct(cartProduct);
-        return;
-    }
-    this.totalAddedQuanty--;
-    for(let cp  of this.cartProducts){
-      if(cp._id == cartProduct._id){ 
-          cp.quantity--;
-          cp.subtotal =  +cp.subtotal -  +cp.unitPrice;  
-          this.total -= +cp.unitPrice;
-          this.grandTotal -= +cp.unitPrice;
-          this.cartService.editCartProduct(cartProduct._id, cp).subscribe(); 
-          return; 
-      }
-    }
+  // minusQuantity(cartProduct:any){
+  //   if( cartProduct.quantity == 1){
+  //       this.deleteCartProduct(cartProduct);
+  //       return;
+  //   }
+  //   this.totalAddedQuanty--;
+  //   for(let cp  of this.cartProducts){
+  //     if(cp._id == cartProduct._id){ 
+  //         cp.quantity--;
+  //         cp.subtotal =  +cp.subtotal -  +cp.unitPrice;  
+  //         this.total -= +cp.unitPrice;
+  //         this.grandTotal -= +cp.unitPrice;
+  //         this.cartService.editCartProduct(cartProduct._id, cp).subscribe(); 
+  //         return; 
+  //     }
+  //   }
 
-  }
+  // }
 
-  deleteCartProduct(cartProduct:any){
+  // deleteCartProduct(cartProduct:any){
     
-      this.total -= +cartProduct.subtotal;
-      this.grandTotal -= +cartProduct.subtotal;
-      this.totalAddedQuanty -= +cartProduct.quantity;
+  //     this.total -= +cartProduct.subtotal;
+  //     this.grandTotal -= +cartProduct.subtotal;
+  //     this.totalAddedQuanty -= +cartProduct.quantity;
 
-      this.cartService.deleteCartProduct(cartProduct).subscribe(); //external server theke delete
-      const indexOfObject = this.cartProducts.findIndex((object) => {
-        return object === cartProduct;
-      });  
-      this.cartProducts.splice(indexOfObject, 1);//internal array theke delete*/
-  }
+  //     this.cartService.deleteCartProduct(cartProduct).subscribe(); //external server theke delete
+  //     const indexOfObject = this.cartProducts.findIndex((object) => {
+  //       return object === cartProduct;
+  //     });  
+  //     this.cartProducts.splice(indexOfObject, 1);//internal array theke delete*/
+  // }
 
-   onCheckout(){ //
+  //  onCheckout(){ //
       
-        this.user._id = this.auth.getUserPayload().sub;
-        this.userApi.getUser(this.user._id).subscribe(  (currentUser)=> {
+  //       this.user._id = this.auth.getUserPayload().sub;
+  //       this.userApi.getUser(this.user._id).subscribe(  (currentUser)=> {
          
-            let newOrder:Order = {
-                userID: this.auth.getUserPayload().sub,
-                userAddress: currentUser.address,
-                userPhone: currentUser.phone,
-                status : "Pending",
-                totalAddedQuantity : this.totalAddedQuanty,
-                grandTotal: this.grandTotal
-            }
+  //           let newOrder:Order = {
+  //               userID: this.auth.getUserPayload().sub,
+  //               userAddress: currentUser.address,
+  //               userPhone: currentUser.phone,
+  //               status : "Pending",
+  //               totalAddedQuantity : this.totalAddedQuanty,
+  //               grandTotal: this.grandTotal
+  //           }
             
-            this.orderApi.addOrder(  newOrder ).subscribe( (addedOrder)=>{
-              console.log("Enter ordered!!", addedOrder);
+  //           this.orderApi.addOrder(  newOrder ).subscribe( (addedOrder)=>{
+  //             console.log("Enter ordered!!", addedOrder);
 
-              console.log("Added Product: ", addedOrder);
-              for(let cp of this.cartProducts){
+  //             console.log("Added Product: ", addedOrder);
+  //             for(let cp of this.cartProducts){
          
-                    let orderProduct:OrderProduct = {
-                      productID: cp.productID, 
-                      userID: this.auth.getUserPayload().sub,
-                      imageURL: cp.imageURL,
-                      name: cp.name,
-                      unitPrice : +cp.unitPrice,
-                      quantity: +cp.quantity,
-                      brand: cp.brand,
-                      subtotal: +cp.subtotal,
-                      orderID : addedOrder._id
-                    }
+  //                   let orderProduct:OrderProduct = {
+  //                     productID: cp.productID, 
+  //                     userID: this.auth.getUserPayload().sub,
+  //                     imageURL: cp.imageURL,
+  //                     name: cp.name,
+  //                     unitPrice : +cp.unitPrice,
+  //                     quantity: +cp.quantity,
+  //                     brand: cp.brand,
+  //                     subtotal: +cp.subtotal,
+  //                     orderID : addedOrder._id
+  //                   }
 
 
                  
-                  this.orderService.addOrderProduct(orderProduct).subscribe(  (res)=>{
+  //                 this.orderService.addOrderProduct(orderProduct).subscribe(  (res)=>{
                   
-                    this.cartService.deleteCartProduct(cp).subscribe(  ()=>{
-                      const indexOfObject = this.cartProducts.findIndex((object) => {
-                        return object === cp;
-                      });  
-                      this.cartProducts.splice(indexOfObject, 1);//internal array theke delete
-                    } );
-                  });
-            }
+  //                   this.cartService.deleteCartProduct(cp).subscribe(  ()=>{
+  //                     const indexOfObject = this.cartProducts.findIndex((object) => {
+  //                       return object === cp;
+  //                     });  
+  //                     this.cartProducts.splice(indexOfObject, 1);//internal array theke delete
+  //                   } );
+  //                 });
+  //           }
 
 
-          })
+  //         })
 
       
-        })
+  //       })
   
            
-      this.router.navigate(['/order-confirmation']);
+  //     this.router.navigate(['/order-confirmation']);
       
 
-   }
+  //  }
  
       
 

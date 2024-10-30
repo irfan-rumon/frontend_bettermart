@@ -41,16 +41,16 @@ export class HomePageComponent implements OnInit {
          this.trendingProducts = trendingProduct;
         
     } )
-    this.cartService.getCartProducts().subscribe(  (cartProducts)=>{
-          this.cartService.getCartProducts().subscribe(  (res)=>{
-               this.cartProducts = res.data;
-               for( let cp of this.cartProducts){
-                   if( cp.userID == this.auth.getUserPayload().sub){
-                      this.totalAddedQuanty += cp.quantity;
-                   }
-               }    
-          })
-    })
+    // this.cartService.getCartProducts().subscribe(  (cartProducts)=>{
+    //       this.cartService.getCartProducts().subscribe(  (res)=>{
+    //            this.cartProducts = res.data;
+    //            for( let cp of this.cartProducts){
+    //                if( cp.userID == this.auth.getUserPayload().sub){
+    //                   this.totalAddedQuanty += cp.quantity;
+    //                }
+    //            }    
+    //       })
+    // })
 
     this.productApi.getAllProducts().subscribe( (products)=>{
       this.products = products;
@@ -60,7 +60,8 @@ export class HomePageComponent implements OnInit {
   }
 
 
-  addAddedQuantity(){
+  addAddedQuantity(product: Product){
+    console.log("Cart added", product);
     this.totalAddedQuanty++;
   }
 

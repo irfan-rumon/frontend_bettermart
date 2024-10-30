@@ -4,6 +4,7 @@ import { CartProduct } from 'src/app/models/cartProduct';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
 import { AuthorizationService } from 'src/app/services/authorization.service';
+import { catchError, of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-product-item',
@@ -28,42 +29,45 @@ export class ProductItemComponent implements OnInit {
   }
 
   onAddToCart(product: Product){
-        
-      this.onAddCart.emit(product); //parent componentke inform kora
-
-      this.cartService.getCartProducts().subscribe(  (res)=>{ //always subscriber er vitorei kaj korte hoy noile
-                                 // problem kore
-        let arr:any[] = res.data;
-        for(let cp of arr){
-          //  console.log("Whole Object", cp, cp.brand, cp._id);
-                // if(cp.productID == product._id   && cp.userID == this.auth.getUserPayload().sub){ //already exist,
-                //  // console.log("EDIT korte ready.....");
-                    
-                //   cp.quantity++;
-                //     cp.subtotal = +cp.unitPrice  + +cp.subtotal;  
-                //    // console.log("Edired Object: ", cp);
-                    
-                //     this.cartService.editCartProduct(cp._id, cp).subscribe(); 
-                //     return; 
-                // }
-      } 
-
-      
-      let newCartProduct = {} as any;
+              
      
-      // newCartProduct.userID = this.auth.getUserPayload().sub; newCartProduct.brand=product.brand;
-      // newCartProduct.name=product.name;  newCartProduct.imageURL=product.imageURL;
-      // newCartProduct.unitPrice=product.unitPrice; newCartProduct.quantity=1;
-      // newCartProduct.subtotal=product.unitPrice;
-      // newCartProduct.productID = product._id; //! means it not null for sure
+      console.log("Here inside product item, clicked cart item: ", product);
+      this.onAddCart.emit(product); // Inform parent component
 
-      this.cartService.addCartProduct( newCartProduct  ).subscribe();
-      this.cartProducts.push(newCartProduct);
-  })
+      this.cartService.getCartProductByProductId(product.id).subscribe({
+          next: (cartItem: any) => {
+                console.log('Retrieved cart item through product id:', cartItem);
+                //add quantity by 1 
+                let updatedQuantity:number = cartItem?.quantity + 1;
+                console.log("Here updated quantity is: ", updatedQuantity);
+                let reqPayload:any = {
+                    product: product.id,
+                    quantity: updatedQuantity
+                }
+                 //api call to increase quantity
+                this.cartService.editProductQuantityOfCart(cartItem.id, reqPayload).subscribe({
+                    next: (res:any) => {},
+                    error: (res:any) => {}
+                })
+               
+          },
+          error: (error: any) => {
+                console.log(error);
+                let reqPayload:any = {
+                   product: product.id,
+                   quantity: 1
+                }
+                //api call to add cart
+                this.cartService.addCart(reqPayload).subscribe({
+                    next: (res:any) => {},
+                    error: (res:any) => {}
+                })
+          }
+      });
 
-  
-}
+  }
 
+ 
 
 
 }

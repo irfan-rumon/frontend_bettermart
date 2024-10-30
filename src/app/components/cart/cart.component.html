@@ -51,11 +51,11 @@
                            
                             <td class="medium-font">
                                 <div class="input-group bootstrap-touchspin">
-                                 <button type="button" (click)="minusQuantity(cp)" style="margin-right: 1rem;" ><span style="font-size: 1rem; font-weight:bold;">-</span></button>   
+                                 <button type="button"  style="margin-right: 1rem;" ><span style="font-size: 1rem; font-weight:bold;">-</span></button>   
                                
                                  {{cp.quantity}}
 
-                                 <button type="button" (click)="addQuantity(cp)" style="margin-left: 1rem;" ><span style="font-size: 1rem; font-weight:bold;">+</span></button>    
+                                 <button type="button"  style="margin-left: 1rem;" ><span style="font-size: 1rem; font-weight:bold;">+</span></button>    
                                
                                
                                
@@ -64,7 +64,7 @@
                             <td class="price medium-font">$ {{cp.unitPrice}}</td>
                             <td class="medium-font">${{cp.subtotal}}</td>
                             <td class="text-center">
-                                <i class="bi bi-trash-fill" (click)="deleteCartProduct(cp)" style="color: red; font-size: 1.2rem;"></i>
+                                <i class="bi bi-trash-fill"  style="color: red; font-size: 1.2rem;"></i>
                             </td>
                         </tr>
                         
@@ -128,7 +128,7 @@
                         </div>
                     </div>
                 
-                    <button type="submit" (click)=" onCheckout()"class="btn btn-primary btn-lg"  [disabled]="!cardForm.valid"
+                    <button type="submit" class="btn btn-primary btn-lg"  [disabled]="!cardForm.valid"
                 style="padding-left: 2.5rem; padding-right: 2.5rem;margin-left: 12rem;margin-top: 2rem;">Checkout</button>
                     
                 </form>
