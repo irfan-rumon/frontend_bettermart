@@ -18,7 +18,7 @@ import { AuthorizationService } from 'src/app/services/authorization.service';
 export class HomePageComponent implements OnInit {
 
   catagories: Catagory[] = [];
-  products: Product[];
+  products: Product[] = [];
   trendingProducts: Product[] = [];
   totalAddedQuanty:number = 0;
   cartProducts:CartProduct[];
@@ -39,7 +39,7 @@ export class HomePageComponent implements OnInit {
     } )
     this.productApi.getTrendingProducts().subscribe( (trendingProduct)=>{
          this.trendingProducts = trendingProduct;
-         console.log("Here trending products are: ", this.trendingProducts);
+        
     } )
     this.cartService.getCartProducts().subscribe(  (cartProducts)=>{
           this.cartService.getCartProducts().subscribe(  (res)=>{
@@ -50,6 +50,10 @@ export class HomePageComponent implements OnInit {
                    }
                }    
           })
+    })
+
+    this.productApi.getAllProducts().subscribe( (products)=>{
+      this.products = products;
     })
 
   

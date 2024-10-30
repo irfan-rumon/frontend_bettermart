@@ -1,4 +1,3 @@
-<!-- Template (home-page.component.html) -->
 <app-navbar [totalAddedQuantity]="totalAddedQuanty"></app-navbar>
 <app-slider></app-slider>
 
@@ -30,6 +29,21 @@
           [image_link]="cat.image_link"
           (click)="onCatClick(cat)"
         ></app-catagory-item>
+      </div>
+    </div>
+  </section>
+
+  <!-- All Product Section -->
+  <section class="section products-section">
+    <div class="section-header">
+      <h2>Products</h2>
+    </div>
+    <div class="products-grid">
+      <div *ngFor="let pr of products" class="product-item-wrapper">
+        <app-product-item
+          [product]="pr"
+          (onAddCart)="addAddedQuantity()"
+        ></app-product-item>
       </div>
     </div>
   </section>
