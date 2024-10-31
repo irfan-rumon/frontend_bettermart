@@ -14,26 +14,27 @@ export class UserGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-       if( !this.auth.isLoggedIn()  )
-       {
-         this.router.navigate(['/login']);
-         this.auth.deleteToken();
-         return false;
-       }
-       else{
-            let isAllowed: boolean = true; 
-            let userId:string = this.auth.getUserPayload().sub;
-            this.userApi.getUser(userId).subscribe( (userInfo)=>{
-              console.log("Ai j dekh user info: ", userInfo);    
-              if( userInfo.roll == "admin")
-              {
-                    this.router.navigate(['/login']);
-                    this.auth.deleteToken();
-                    isAllowed = false;
-              }
-            } );
-            return isAllowed;
-           }
+      return true;
+      //  if( !this.auth.isLoggedIn()  )
+      //  {
+      //    this.router.navigate(['/login']);
+      //    this.auth.deleteToken();
+      //    return false;
+      //  }
+      //  else{
+      //       let isAllowed: boolean = true; 
+      //       let userId:string = this.auth.getUserPayload().sub;
+      //       this.userApi.getUser(userId).subscribe( (userInfo)=>{
+      //         console.log("Ai j dekh user info: ", userInfo);    
+      //         if( userInfo.roll == "admin")
+      //         {
+      //               this.router.navigate(['/login']);
+      //               this.auth.deleteToken();
+      //               isAllowed = false;
+      //         }
+      //       } );
+      //       return isAllowed;
+      //      }
   
         
       

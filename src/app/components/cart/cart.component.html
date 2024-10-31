@@ -27,11 +27,11 @@
                             <td class="header">Image</td>
                             <td class="header">Product Name</td>
                            
-                            <td class="header">Brand</td>
+                          
                             <td class="td-qty header">Quantity</td>
                             <td class="header">Unit Price</td>
                             <td class="header">Sub Total</td>
-                            <td class="header">Remove</td>
+                            <td class="header">Action</td>
                         </tr>
                     </thead>
                     <tbody *ngFor="let cp of cartProducts">
@@ -39,30 +39,26 @@
                         <tr>
                             <td class="medium-font">
                                 <a href="#">
-                                    <img src="{{cp.imageURL}}" alt="Adidas Men Red Printed T-shirt" title="" width="47" height="47">
+                                    <img src="{{cp.image_link}}" alt="Adidas Men Red Printed T-shirt" title="" width="47" height="47">
                                 </a>
                             </td>
-                            <td class="medium-font">{{cp.name}}</td>
+                            <td class="medium-font">{{cp.product_name}}</td>
         
                             
                             <td class="medium-font">
-                                {{cp.brand}}
-                            </td>
-                           
-                            <td class="medium-font">
                                 <div class="input-group bootstrap-touchspin">
-                                 <button type="button"  style="margin-right: 1rem;" ><span style="font-size: 1rem; font-weight:bold;">-</span></button>   
+                                 <button type="button" (click)="removeQuantity(cp)" style="margin-right: 1rem;" ><span style="font-size: 1rem; font-weight:bold;">-</span></button>   
                                
                                  {{cp.quantity}}
 
-                                 <button type="button"  style="margin-left: 1rem;" ><span style="font-size: 1rem; font-weight:bold;">+</span></button>    
+                                 <button type="button" (click)="addQuantity(cp)" style="margin-left: 1rem;" ><span style="font-size: 1rem; font-weight:bold;">+</span></button>    
                                
                                
                                
                             </div>
                             </td>
-                            <td class="price medium-font">$ {{cp.unitPrice}}</td>
-                            <td class="medium-font">${{cp.subtotal}}</td>
+                            <td class="price medium-font">$ {{cp.unit_price}}</td>
+                            <td class="medium-font">${{cp.total_price}}</td>
                             <td class="text-center">
                                 <i class="bi bi-trash-fill"  style="color: red; font-size: 1.2rem;"></i>
                             </td>
@@ -73,14 +69,14 @@
 
                     <div style="margin-left: 22rem; margin-top:3rem;">
                         <div *ngIf="cartProducts.length > 0">
-                            <h6 >Total:  <span style="color: rgb(35, 101, 4); margin-left: 1rem;"class=" mb-1 text-right ">${{total}}</span></h6>
+                            <h6 >Total:  <span style="color: rgb(35, 101, 4); margin-left: 1rem;"class=" mb-1 text-right ">${{grandTotal}}</span></h6>
                            
                         </div>
                         <div *ngIf="cartProducts.length > 0">
                             <h6 >Shipping:  <span style="color: rgb(35, 101, 4);  margin-left: 1rem;"class=" mb-1 text-right">${{shipping}}</span></h6>
                         </div>
                         <div id="tax" *ngIf="cartProducts.length > 0">
-                            <h6 >Grand Total(Inc. Tax):<span style="color: rgb(35, 101, 4); margin-left: 1rem;"class=" mb-1 text-right">${{grandTotal}}</span></h6>
+                            <h6 >Grand Total(Inc. Tax):<span style="color: rgb(35, 101, 4); margin-left: 1rem;"class=" mb-1 text-right">${{grandTotal+shipping}}</span></h6>
                            
                         </div>
                        
