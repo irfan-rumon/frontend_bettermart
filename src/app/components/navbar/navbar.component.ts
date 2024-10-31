@@ -78,6 +78,15 @@ export class NavbarComponent implements OnInit {
 
   onSearch(){
    
+    console.log("here user searched for", this.inputVal);
+    this.productApi.getProductsByName(this.inputVal ).subscribe( {
+        next: (products:any[])=>{
+          console.log("Here searched products are: ", products);
+          this.sharedService.updateProducts(products); 
+        },
+        error: (error:any) => {}
+    })
+
     let searchedProducts:Product[] = [];
 
      //searchItem first lettr uppercase, rest are lowercase

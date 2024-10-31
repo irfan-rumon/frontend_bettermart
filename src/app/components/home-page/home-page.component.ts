@@ -8,6 +8,7 @@ import { SearchService } from 'src/app/services/search.service';
 import { CartService } from 'src/app/services/cart.service';
 import { CartProduct } from 'src/app/models/cartProduct';
 import { AuthorizationService } from 'src/app/services/authorization.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 
 @Component({
@@ -29,7 +30,8 @@ export class HomePageComponent implements OnInit {
               private productApi: ProductApiService,
               private searchService: SearchService,
               private cartService: CartService,
-              private auth: AuthorizationService
+              private auth: AuthorizationService,
+              private sharedService: SharedService
     ) { }
 
   ngOnInit(): void {
@@ -41,20 +43,13 @@ export class HomePageComponent implements OnInit {
          this.trendingProducts = trendingProduct;
         
     } )
-    // this.cartService.getCartProducts().subscribe(  (cartProducts)=>{
-    //       this.cartService.getCartProducts().subscribe(  (res)=>{
-    //            this.cartProducts = res.data;
-    //            for( let cp of this.cartProducts){
-    //                if( cp.userID == this.auth.getUserPayload().sub){
-    //                   this.totalAddedQuanty += cp.quantity;
-    //                }
-    //            }    
-    //       })
-    // })
-
-    this.productApi.getAllProducts().subscribe( (products)=>{
-      this.products = products;
-    })
+    
+      // Subscribe to searched
+      this.sharedService.products$.subscribe(
+        (products) => {
+          this.products = products;
+        }
+      );
 
   
   }

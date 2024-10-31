@@ -24,6 +24,11 @@ export class ProductApiService {
     return this.http.get<any>(this.apiUrl);
   }
 
+  getProductsByName(prod: string): Observable<any> {
+    const url = `${this.apiUrl}?name=${prod}`; 
+    return this.http.get<any>(url);
+}
+
   getTrendingProducts(): Observable<any> {
     const url = `${this.apiUrl}?is_trending=1`;
     return this.http.get<any>(url, httpOptions);

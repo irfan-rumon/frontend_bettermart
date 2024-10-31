@@ -15,6 +15,10 @@ export class SharedService {
   private isLoggedInSource = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSource.asObservable();
 
+  // BehaviorSubject to store the list of products, initially empty array
+  private productsSource = new BehaviorSubject<any[]>([]); 
+  products$ = this.productsSource.asObservable();
+
   constructor(private cartApi: CartService) {
     this.initializeCartItemCount();
     this.initializeLoginStatus();
@@ -47,5 +51,10 @@ export class SharedService {
   // Method to manually update login status (e.g., on login/logout)
   updateLoginStatus(isLoggedIn: boolean) {
     this.isLoggedInSource.next(isLoggedIn);
+  }
+
+  // Method to update the product list
+  updateProducts(products: any[]) {
+    this.productsSource.next(products);
   }
 }
