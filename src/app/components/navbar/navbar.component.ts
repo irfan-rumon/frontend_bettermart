@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
 
   products: Product[] = [];
   catagories: Catagory[] = [];
+  numOfCartItems: number = 0;
   inputVal: string;
   @Input() totalAddedQuantity: number;
 
@@ -25,7 +26,7 @@ export class NavbarComponent implements OnInit {
       private searchService: SearchService,
       private productApi: ProductApiService,
       private catagoryApi: CatagoryApiService,
-      private cartService: CartService,
+      private cartApi: CartService,
       private auth:AuthorizationService
   ) { }
 
@@ -37,6 +38,15 @@ export class NavbarComponent implements OnInit {
       this.catagoryApi.getCatagories().subscribe( (cats)=>{
         this.catagories = cats.data;
      } )
+
+     this.cartApi.getCartProducts().subscribe({
+        next: (carts: any) => {
+            console.log("Here number of cart items: " , carts.length);
+            this.numOfCartItems = carts.length;
+        },
+        error: (error: any) => { }
+     })
+  
   }
 
   onLogout(){
