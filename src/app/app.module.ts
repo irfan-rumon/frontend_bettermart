@@ -23,6 +23,7 @@ import { OrderConfirmationComponent } from './components/order-confirmation/orde
 import { AuthInterceptor } from './services/auth.interceptor';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { LayoutComponent } from './components/layout/layout.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { ContactComponent } from './components/contact/contact.component';
     OrderConfirmationComponent,
     AboutUsComponent,
     ContactComponent,
+    LayoutComponent,
    
    
     

@@ -18,37 +18,29 @@ export class OrderComponent implements OnInit {
   total: number = 0;
   grandTotal:number = 3;
   totalAddedQuanty:number = 0;
-  orders:any[] = [];
+  orders: Order[] = [];
   cartProducts: any[] = [];
+  delivaryCost: number = 5;
  
 
-  constructor(private router:Router,
-              private orderService: OrderService,
-              private cartService: CartService, 
-              private orderApi: OrderApiService,
+  constructor(private router:Router, 
+              private orderApi: OrderService,
               private auth: AuthorizationService
              ) { }
 
   ngOnInit(): void {
-       this.orderApi.getOrders().subscribe( (res)=>{
-            let arr:any = res.data;
-            for(let order of arr){
-                 if( order.userID == this.auth.getUserPayload().sub  ){
-                    this.orders.push( order);
-                 }
-            }
+       this.orderApi.getOrderItems().subscribe( (orders)=>{
+          for(let order of orders){
+              console.log("Here order is: ", order);
+              let orderItem: Order = {
+                 id: order.id,
+                 total: Number(order.total_amount) + this.delivaryCost,
+                 status: order.status,
+                 createdAt: order.created_at
+              }
+              this.orders.push( orderItem );
+          }
        })
-
-     //   this.cartService.getCartProducts().subscribe(  (cartProducts)=>{
-     //      this.cartService.getCartProducts().subscribe(  (res)=>{
-     //           this.cartProducts = res.data;
-     //           for( let cp of this.cartProducts){
-     //               if( cp.userID == this.auth.getUserPayload().sub){
-     //                  this.totalAddedQuanty += cp.quantity;
-     //               }
-     //           }    
-     //      })
-     //    })
   }
    
 

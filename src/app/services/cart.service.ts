@@ -40,4 +40,9 @@ export class CartService {
     return this.http.post<any>(this.apiUrl, data, httpOptions);
   }
 
+  clearCarts() : Observable<any> {
+     const url = `${this.apiUrl}clear/`;
+     return this.http.delete<any>(url);
+  }
+
 }

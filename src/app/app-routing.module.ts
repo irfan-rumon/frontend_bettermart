@@ -11,17 +11,27 @@ import { AdminGuard } from './guards/admin.guard';
 import { UserGuard } from './guards/user.guard';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { LayoutComponent } from './components/layout/layout.component';
 
 const routes: Routes = [
-     { path: '', redirectTo: 'home', pathMatch: 'full' }, 
-     {path: 'home',  component:  HomePageComponent },
-     {path: 'display', component: DisplayComponent, canActivate: [UserGuard]},
-     {path: 'cart', component: CartComponent, canActivate: [UserGuard]},
+     
      {path: 'login', component: LoginComponent},
      {path: 'register', component: RegisterComponent},
-     {path: 'order-confirmation', component: OrderConfirmationComponent, canActivate: [UserGuard]},
-     { path: 'about-us', component: AboutUsComponent },
-     { path: 'contacts', component: ContactComponent},
+     
+      {  path: '',
+        component: LayoutComponent,
+        children: [
+          { path: '', component: HomePageComponent },
+          { path: 'display', component: DisplayComponent, canActivate: [UserGuard] },
+          { path: 'cart', component: CartComponent, canActivate: [UserGuard] },
+          { path: 'login', component: LoginComponent },
+          { path: 'register', component: RegisterComponent },
+          { path: 'order-confirmation', component: OrderConfirmationComponent, canActivate: [UserGuard] },
+          { path: 'about-us', component: AboutUsComponent },
+          { path: 'contacts', component: ContactComponent },
+          { path: 'myorder', component: OrderComponent, canActivate: [UserGuard] },
+       ]
+     },
      { path: 'myorder', component: OrderComponent, canActivate: [UserGuard]},
      {
       path: 'admin',  

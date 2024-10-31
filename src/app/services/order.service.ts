@@ -14,25 +14,18 @@ const httpOptions = {
 })
 export class OrderService {
 
-  private apiUrl = 'http://localhost:3030/order-products';
+  private apiUrl = 'http://127.0.0.1:8000/api/store/orders/';
 
   constructor(private http: HttpClient) { }
 
-  getOrderProducts(): Observable<any>{
+  getOrderItems(): Observable<any>{
     return this.http.get<any>(this.apiUrl);
   }
 
-  addOrderProduct(cp: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, cp);
+  placeOrder(data: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, data);
   }
 
-  editOrderProduct(id: any, cp:any): Observable<any> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.put<any>(url, cp, httpOptions);
-  }
-
-  deleteOrderProduct(id: any): Observable<any> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.delete<any>(url);
-  }
+  
+  
 }

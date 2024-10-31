@@ -22,15 +22,15 @@ export class OrderConfirmationComponent implements OnInit {
               private orderProductApi: OrderService) { }
 
   ngOnInit(): void {
-     this.orderProductApi.getOrderProducts().subscribe(  (op)=>{
-          this.orderProducts = op;
-          for(let op of this.orderProducts){
-            if( op.userID == Number(localStorage.getItem('user-id'))){
-               this.orderedQuantity += +op.quantity;
-               this.totalBill += +op.subtotal;
-            }
-          }
-     } )
+    //  this.orderProductApi.getOrderProducts().subscribe(  (op)=>{
+    //       this.orderProducts = op;
+    //       for(let op of this.orderProducts){
+    //         if( op.userID == Number(localStorage.getItem('user-id'))){
+    //            this.orderedQuantity += +op.quantity;
+    //            this.totalBill += +op.subtotal;
+    //         }
+    //       }
+    //  } )
      
    }
  

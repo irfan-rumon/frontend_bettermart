@@ -15,6 +15,7 @@ import { UserApiService } from 'src/app/services/user-api.service';
 import { CartItem } from 'src/app/models/cartItem';
 
 
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -35,11 +36,8 @@ export class CartComponent implements OnInit {
 
   constructor(private router:Router,
               private cartApi: CartService,
-              private orderService: OrderService,
-              private orderApi: OrderApiService,
-              private auth:  AuthorizationService,
-              private userApi: UserApiService,
-              private productApi: ProductApiService) { }
+              private orderApi: OrderService,
+            ) { }
 
   ngOnInit(): void {
 
@@ -78,5 +76,47 @@ export class CartComponent implements OnInit {
         }
     }
   }
+
+  placeOrder() {
+    // Prepare the request body in the specified format
+    const orderRequest = {
+        items: this.cartProducts.map(cartItem => ({
+            product: cartItem.product,
+            quantity: cartItem.quantity
+        }))
+    };
+
+    // Log the request body for debugging
+    console.log("Order placed with request body:", JSON.stringify(orderRequest));
+
+    this.orderApi.placeOrder(orderRequest).subscribe({
+        next: (carts: any) => {
+          this.cartApi.clearCarts().subscribe({
+            next: (response:any)=>{ this.cartProducts = [];},
+            error: (error:any)=>{}
+          })
+          this.cartProducts = [];
+          this.router.navigate(['/myorder'])
+        },
+        error: (error: any) => { }
+    })
+}
+
+
+  clearCartItem(cart: CartItem) {
+    console.log("To be deleted cart: ", cart);
+
+    // Find the index of the item to be removed
+    const index = this.cartProducts.findIndex(item => item.id === cart.id);
+
+    if (index !== -1) {
+        // Update grand total by subtracting the total price of the removed item
+        this.grandTotal -= this.cartProducts[index].total_price;
+
+        // Remove the item from the array
+        this.cartProducts.splice(index, 1);
+    }
+}
+
 
 }

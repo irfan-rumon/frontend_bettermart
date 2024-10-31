@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
   catagories: Catagory[] = [];
   numOfCartItems: number = 0;
   inputVal: string;
+  isLoggedIn:boolean = false;
   @Input() totalAddedQuantity: number;
 
   constructor(
@@ -51,6 +52,14 @@ export class NavbarComponent implements OnInit {
 
   onLogout(){
      this.auth.deleteToken();
+     localStorage.clear();
+     this.isLoggedIn = false;
+     this.router.navigate(['/']);
+  }
+
+  onLogin(){
+    this.router.navigate(['/login']); 
+   
   }
 
 

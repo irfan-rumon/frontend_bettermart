@@ -1,4 +1,3 @@
-<app-navbar [totalAddedQuantity]=" totalAddedQuanty"></app-navbar>
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container bootdey">
@@ -39,7 +38,7 @@
                            
                             <tr>
                                 <td class="medium-font">
-                                    {{op._id}}
+                                    {{op.id}}
                                 </td>
                                 <td class="medium-font">{{ op.createdAt | date }}</td>
             
@@ -47,14 +46,14 @@
                                
 
                                 <td class="medium-font">
-                                    {{op.grandTotal}}
+                                    {{op.total}}
                                 </td>
 
-                                <td *ngIf="op.status=='Pending'" class="medium-font" style="color:rgb(247, 17, 17)">
+                                <td *ngIf="op.status=='pending'" class="medium-font" style="color:rgb(247, 17, 17)">
                                     {{op.status}}
                                 </td>
 
-                                <td *ngIf="op.status=='Delivered'" class="medium-font" style="color: green">
+                                <td *ngIf="op.status=='delivered'" class="medium-font" style="color: green">
                                     {{op.status}}
                                 </td>
                                
@@ -82,4 +81,4 @@
 
 
 
-<app-footer></app-footer>
+
