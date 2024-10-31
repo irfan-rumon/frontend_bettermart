@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoggerUser } from 'src/app/models/loggerUser';
 import { AuthorizationService } from 'src/app/services/authorization.service';
 import { CustomerApiService } from 'src/app/services/customer-api.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
     private userApi: UserApiService,
     private router: Router,
     private customerApi: CustomerApiService,
-    private auth: AuthorizationService
+    private auth: AuthorizationService,
+    private sharedService: SharedService
   ) {}
 
   ngOnInit(): void {}
@@ -35,7 +37,8 @@ export class LoginComponent implements OnInit {
         if (response["access"]) {
           this.failedLogin = false;
           this.auth.setToken(response["access"]);
-          this.router.navigate(['/home']); // Redirect upon successful login
+          this.sharedService.updateLoginStatus( true );
+          this.router.navigate(['/']); // Redirect upon successful login
         } else {
           this.failedLogin = true; // Display 'wrong credentials' message
         }

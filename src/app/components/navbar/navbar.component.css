@@ -3,6 +3,10 @@
     margin-top: -3px;
     font-size: 1.15rem;
   }
+
+  .cursor-pointer {
+    cursor: pointer; /* Changes the cursor to a pointer */
+}
   
   .form-control {
     height: calc(2.5rem + 2px);

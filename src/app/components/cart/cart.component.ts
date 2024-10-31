@@ -1,18 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-
-import { ProductApiService } from 'src/app/services/product-api.service';
 import { OrderService } from 'src/app/services/order.service';
 import { CartService } from 'src/app/services/cart.service';
 import { Router } from '@angular/router';
-import { OrderProduct } from 'src/app/models/orderProduct';
 import { Card } from 'src/app/models/card';
-import { AuthorizationService } from 'src/app/services/authorization.service';
-import { OrderApiService } from 'src/app/services/order-api.service';
-import { Order } from 'src/app/models/order';
 import { User } from 'src/app/models/user';
-import { LoggerUser } from 'src/app/models/loggerUser';
-import { UserApiService } from 'src/app/services/user-api.service';
 import { CartItem } from 'src/app/models/cartItem';
+import { SharedService } from 'src/app/services/shared.service';
 
 
 
@@ -37,6 +30,7 @@ export class CartComponent implements OnInit {
   constructor(private router:Router,
               private cartApi: CartService,
               private orderApi: OrderService,
+              private sharedService: SharedService
             ) { }
 
   ngOnInit(): void {
@@ -92,7 +86,7 @@ export class CartComponent implements OnInit {
     this.orderApi.placeOrder(orderRequest).subscribe({
         next: (carts: any) => {
           this.cartApi.clearCarts().subscribe({
-            next: (response:any)=>{ this.cartProducts = [];},
+            next: (response:any)=>{ this.cartProducts = []; this.sharedService.updateCartItemCount(0); },
             error: (error:any)=>{}
           })
           this.cartProducts = [];

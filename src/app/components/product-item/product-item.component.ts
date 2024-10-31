@@ -4,6 +4,7 @@ import { CartProduct } from 'src/app/models/cartProduct';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
 import { AuthorizationService } from 'src/app/services/authorization.service';
+import { SharedService } from 'src/app/services/shared.service';
 import { catchError, of, switchMap } from 'rxjs';
 
 @Component({
@@ -21,6 +22,7 @@ export class ProductItemComponent implements OnInit {
 
 
   constructor(private router: Router, private cartService: CartService,
+             private sharedService: SharedService,
              private auth:AuthorizationService
     ) { }
 
@@ -30,9 +32,14 @@ export class ProductItemComponent implements OnInit {
 
   onAddToCart(product: Product){
               
-     
+    let curQuantity = 0;
+    this.sharedService.cartItemCount$.subscribe(count => curQuantity = count);
+    
+    // Increment the count
+    this.sharedService.updateCartItemCount(curQuantity + 1);
+
       console.log("Here inside product item, clicked cart item: ", product);
-      this.onAddCart.emit(product); // Inform parent component
+      // this.onAddCart.emit(product); // Inform parent component
 
       this.cartService.getCartProductByProductId(product.id).subscribe({
           next: (cartItem: any) => {
@@ -46,7 +53,7 @@ export class ProductItemComponent implements OnInit {
                 }
                  //api call to increase quantity
                 this.cartService.editProductQuantityOfCart(cartItem.id, reqPayload).subscribe({
-                    next: (res:any) => {},
+                    next: (res:any) => {    },
                     error: (res:any) => {}
                 })
                

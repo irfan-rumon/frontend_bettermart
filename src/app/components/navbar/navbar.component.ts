@@ -7,6 +7,7 @@ import { ProductApiService } from 'src/app/services/product-api.service';
 import { CatagoryApiService } from 'src/app/services/catagory-api.service';
 import { CartService } from 'src/app/services/cart.service';
 import { AuthorizationService } from 'src/app/services/authorization.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-navbar',
@@ -28,7 +29,8 @@ export class NavbarComponent implements OnInit {
       private productApi: ProductApiService,
       private catagoryApi: CatagoryApiService,
       private cartApi: CartService,
-      private auth:AuthorizationService
+      private auth:AuthorizationService,
+      private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -40,20 +42,24 @@ export class NavbarComponent implements OnInit {
         this.catagories = cats.data;
      } )
 
-     this.cartApi.getCartProducts().subscribe({
-        next: (carts: any) => {
-            console.log("Here number of cart items: " , carts.length);
-            this.numOfCartItems = carts.length;
-        },
-        error: (error: any) => { }
-     })
-  
+     this.sharedService.cartItemCount$.subscribe(
+      (count) => ( this.numOfCartItems = count)
+     );
+
+      // Subscribe to login status updates
+    this.sharedService.isLoggedIn$.subscribe(
+      (status) => {
+        console.log("Here status is: ", status);
+        this.isLoggedIn = status
+      }
+    );
   }
 
   onLogout(){
      this.auth.deleteToken();
      localStorage.clear();
      this.isLoggedIn = false;
+     this.sharedService.updateLoginStatus(false);
      this.router.navigate(['/']);
   }
 
