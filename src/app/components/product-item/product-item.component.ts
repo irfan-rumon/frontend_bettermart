@@ -17,6 +17,7 @@ export class ProductItemComponent implements OnInit {
   @Input() product:Product;
   @Output() onAddCart: EventEmitter<Product> = new EventEmitter();
   cartProducts: any[] = [];
+  isLoggedIn: boolean = false;
 
 
 
@@ -27,10 +28,17 @@ export class ProductItemComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    
+     if( localStorage.getItem('token'))this.isLoggedIn = true;
+     else this.isLoggedIn = false;
   }
 
   onAddToCart(product: Product){
+    if (!this.isLoggedIn) {
+      this.router.navigate(['login']).then(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to top
+      });
+      return;
+    }
               
     let curQuantity = 0;
     this.sharedService.cartItemCount$.subscribe(count => curQuantity = count);

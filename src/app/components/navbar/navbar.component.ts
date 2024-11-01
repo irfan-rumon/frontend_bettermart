@@ -49,7 +49,6 @@ export class NavbarComponent implements OnInit {
       // Subscribe to login status updates
     this.sharedService.isLoggedIn$.subscribe(
       (status) => {
-        console.log("Here status is: ", status);
         this.isLoggedIn = status
       }
     );
